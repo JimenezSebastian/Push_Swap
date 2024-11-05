@@ -6,6 +6,20 @@ void exit_error(void)
         exit(1);
 }
 
+char **parse(int argc, char **argv, n_list **stack_a)
+{
+        char **newArgv;
+        int *index;
+
+        newArgv = clean_argv(argv, argc);  // limpia la entrada 
+        no_int(newArgv); // revisa que sean solo num validos
+        create_nodes(newArgv, stack_a); //pasa las str a int y los agrega a la lista revisando que no esten repetidos
+        index = make_index(newArgv);//  hace un array con los enteros 
+        array_sort(index); // ordenamos el array 
+                                // indexamos la lista
+        return (newArgv);
+}
+
 int main(int argc, char **argv)
 {
         char *line;
