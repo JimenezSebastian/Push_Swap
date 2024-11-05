@@ -6,12 +6,38 @@
 /*   By: almejia- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:30:56 by almejia-          #+#    #+#             */
-/*   Updated: 2024/11/01 17:33:37 by almejia-         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:13:13 by almejia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
+
+void array_sort(int *int_array)
+{
+	
+}
+
+int *make_index(char **newArgv, int index)
+{
+        int *iarray;
+        int i;
+        char *str;
+        n_list *head;
+
+        i = 0;
+        head = *stack_a;
+        iarray = malloc(index * (sizeof)int);
+        if (!iarray)
+                exit_error();
+        while ((str = newArgv[i]) != NULL)
+        {
+                iarray[i] = ft_atoi(str);
+                ++i;
+        }
+        i = 0;
+        return (iarray);
+}
 
 int value_exists(n_list *stack_a, int p)
 {
@@ -27,7 +53,7 @@ int value_exists(n_list *stack_a, int p)
 	return (0);
 }
 
-int atoinaitor(char **r, n_list **stack_a)
+int create_nodes(char **r, n_list **stack_a)
 {
 	char *str;
 	int index;
@@ -103,57 +129,4 @@ char **clean_argv(char **argv, int argc)
 	result = ft_split(str, ' ');
 	free(str);
 	return(result);
-}
-
-int *make_index(char **newArgv, int index)
-{
-	int *iarray;
-	int i;
-	char *str;
-	n_list *head;
-
-	i = 0;
-	head = *stack_a;
-	iarray = malloc(index * (sizeof)int);
-	if (!iarray)
-		exit_error();
-	while ((str = newArgv[i]) != NULL)
-	{
-		iarray[i] = ft_atoi(str);
-		++i;
-	}
-	i = 0;
-	return (iarray);
-}
-
-void index_asiggment(int nums)
-{
-	int i;
-	int j;
-
-	while(nums[i])
-	{
-		j = 0;
-		swapped = 0;
-		while(nums[j] < )
-		{
-			
-		}
-		if (swapped == 0)
-                	break;
-		i++;
-	}
-}
-
-char **parse(int argc, char **argv, n_list **stack_a)
-{
-	char **newArgv;
-	int *index;
-
-	newArgv = clean_argv(argv, argc);
-	no_int(newArgv);
-	atoinaitor(newArgv, stack_a, &index);
-	index = make_index(newArgv);
-	index_assigment(index);
-	return (newArgv);
 }
