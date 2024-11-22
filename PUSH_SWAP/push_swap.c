@@ -1,132 +1,71 @@
-/* ************************************************************************** */
-/*                                 i                                           */
-/*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: almejia- <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 14:30:56 by almejia-          #+#    #+#             */
-/*   Updated: 2024/11/05 14:13:13 by almejia-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "libft.h"
 #include "push_swap.h"
+#include <math.h>
 
-void array_sort(int *int_array)
+void radix_sort(n_list **stack_a, n_list **stack_b)
 {
-	
-}
-
-int *make_index(char **newArgv, int index)
-{
-        int *iarray;
-        int i;
-        char *str;
-        n_list *head;
-
-        i = 0;
-        head = *stack_a;
-        iarray = malloc(index * (sizeof)int);
-        if (!iarray)
-                exit_error();
-        while ((str = newArgv[i]) != NULL)
-        {
-                iarray[i] = ft_atoi(str);
-                ++i;
-        }
-        i = 0;
-        return (iarray);
-}
-
-int value_exists(n_list *stack_a, int p)
-{
-	n_list *temp = NULL;
-
-	temp = stack_a;
-	while (temp)
-	{
-		if ((int)temp->num == p)
-			return (1);
-		temp = temp->next;
-	}
-	return (0);
-}
-
-int create_nodes(char **r, n_list **stack_a)
-{
-	char *str;
-	int index;
-	int p;
+	int max_bits;
 	int i;
-	n_list *new_node = NULL;
+	int size;
+	int j;
 
 	i = 0;
-	while ((str = r[i]) != NULL)
+	max_bits = get_max_bits(*stack_a);
+//	size = lst_size(*stack_a);
+	while (i < max_bits)
 	{
-		p = ft_atoi(str);
-		if (p >= INT_MIN && p <= INT_MAX)
+		j = 0;
+		size = lst_size(*stack_a);
+		while (j < size)
 		{
-			if (value_exists(*stack_a, p))
-				exit_error();
-			new_node = lstnew(p);
-			if (!new_node)
-            			exit_error();
-			lstadd_back(stack_a, new_node);
-			++index;
+			if ((((*stack_a)->index >> i) & 1) == 0)
+			{
+				pb(stack_a, stack_b);			// Mueve a B si el bit es 0
+				write(1, "pb\n", 3);
+			}
+			else
+			{
+				ra_rb(stack_a);			// Rota en A si el bit es 1
+				write(1, "ra\n", 3);
+			}
+			j++;
 		}
-		else
-			exit_error();
-		i++;
+		while (*stack_b)
+		{
+			pa(stack_a, stack_b);
+			write(1, "pa\n", 3);
+		}
+        	i++;
 	}
-	return (index);	
 }
 
-void no_int(char **newArgv)
+void parse(int argc, char **argv, n_list **stack_a)
 {
-	int i = 0;
-	int s = 0;
-	char *str;
-
-	while((str = newArgv[i]) != NULL)
-	{
-		s = 0;
-		while (str[s])
-		{
-			if (str[s] >= '0' && str[s] <= '9' || str[s] == ' ')
-				++s;
-			else if (str[s] == '+' && str[s + 1] >= '0' && str[s + 1] <= '9')
-				++s;
-			else if (str[s] == '-' && str[s + 1] >= '0' && str[s + 1] <= '9')
-				++s;
-			else 
-				exit_error();
-		}
-		++i;
-	}
-	printf("Success\n");
+        char	**newArgv;
+        int	*nums;
+	int	size_array;
+	
+        newArgv = clean_argv(argv, argc);
+        size_array = no_int(newArgv);
+        create_nodes(newArgv, stack_a);
+        nums = make_index(newArgv, size_array);
+	array_sort(nums, size_array);
+        index_lst(stack_a, nums);
 }
 
-char **clean_argv(char **argv, int argc)
+int main(int argc, char **argv)
 {
-	char	**result;
-	char 	*temp;
-	char	*str;
-	char	*aux;
-	int	i;
-
-	str = ft_strjoin(argv[1], " ");
-	i = 2;
-	while(argc-- > 2)
-	{
-		temp = ft_strjoin(argv[i], " ");
-		aux = ft_strjoin(str, temp);
-		free(str);
-                free(temp);
-		str = aux;
-		i++;
-	}
-	result = ft_split(str, ' ');
-	free(str);
-	return(result);
+	n_list	*stack_a = NULL;
+	n_list	*stack_b = NULL;
+	
+        if (argc <= 1)
+                exit(1);
+	parse(argc, argv, &stack_a);
+	radix_sort(&stack_a, &stack_b);
+	while (stack_a)
+        {
+                printf("Num:%i\n", stack_a->num);
+//              printf("%i", ->index);
+                stack_a = stack_a->next;
+        }
+        return (0);
 }
