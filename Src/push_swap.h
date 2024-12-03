@@ -11,7 +11,11 @@
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# ifndef OVER_FLOW
+#  define OVER_FLOW 12345678911
+# endif
 
 #include <stdlib.h>
 #include <limits.h>
@@ -19,6 +23,7 @@
 #include <unistd.h>
 #include "libft.h"
 #include <math.h>
+#include <stddef.h>
 
 typedef struct n_list
 {

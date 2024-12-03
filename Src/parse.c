@@ -10,117 +10,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
 
-void    index_lst(n_list **stack_a, int *nums)
+
+char **cleaner_argv(char **argv, int argc)
 {
-	int	i;
-	n_list	*ptr;
-	
-	ptr = *stack_a;
-	while (ptr)
-	{
-		i = 0;
-		while (ptr->num != nums[i])
-			i++;
-		ptr->index = i;
-		ptr = ptr->next;
-	}
+	char    **result;
+	char    *new;
+    int     total_length;
+    int     i;
+
+    i = 1;
+	total_length = 0;
+    while (i < argc)
+        total_length += ft_strlen(argv[i++]) + 1;
+    new = malloc(total_length);
+    if (!new)
+        return (NULL); 
+    new[0] = '\0';
+    i = 1;
+    while (i < argc)
+    {
+        ft_strcat(new, argv[i]);
+        if (i < argc - 1)
+            ft_strcat(new, " ");
+        i++;
+    }
+    result = ft_split(new, ' ');
+    return (free(new), result);
 }
 
-void array_sort(int *nums, int size_array)
-{
-	int	i;
-	int	flag;
-	int	temp;
-	
-	while (1)
-	{
-		i = 0;
-		flag = 0;
-		while (i < (size_array - 1))
-		{
-			if (nums[i] > nums[i + 1])
-			{
-				temp = nums[i];
-				nums[i] = nums[i + 1];
-				nums[i + 1] = temp;
-				flag = 1;
-			}
-			++i;
-		}
-		if (flag == 0)
-			break;
-	}
-}
-
-int *make_index(char **newArgv, int size_array)
+int	digits_checker(char **newArgv)
 {
 	char	*str;
-        int	*i_array;
-        int	i;
+	int		size;
+	int		s;
 
-        i = 0;
-        i_array = malloc(size_array * sizeof(int));
-        if (!i_array)
-                exit_error();
-        while ((str = newArgv[i]) != NULL)
-        {
-		i_array[i] = ft_atoi(str);
-                ++i;
-        }
-        return (i_array);
-}
-
-int n_atoi(char *str)
-{
-	char c;
-
-	while ((c = *str))
-	{
-	 	ft_atoi(&c);
-	}
-	
-}
-
-void	create_nodes(char **r, n_list **stack_a)
-{
-	char *str;
-	char c;
-	int p;
-	int i;
-	n_list *new_node = NULL;
-
-	i = 0;
-	while ((str = r[i]) != NULL)
-	{
-		p = n_atoi(str);
-		if (p >= INT_MIN && p <= INT_MAX)
-		{
-			if (value_exists(*stack_a, p))
-				exit_error();
-			new_node = lstnew(p);
-			if (!new_node)
-            			exit_error();
-			lstadd_back(stack_a, new_node);
-		}
-		else
-			exit_error();
-		i++;
-	}
-}
-
-int	no_int(char **newArgv)
-{
-	char	*str;
-	int	size;
-	int	i;
-	int	s;
-
-	i = 0;
 	size = 0;
-	while((str = newArgv[i]) != NULL)
+	while((str = newArgv[size]) != NULL)
 	{
 		s = 0;
 		while (str[s])
@@ -134,32 +61,49 @@ int	no_int(char **newArgv)
 			else 
 				exit_error();
 		}
-		++i;
 		++size;
 	}
 	return (size);
 }
 
-char **clean_argv(char **argv, int argc)
+int *make_index(char **argv, int argc)
 {
-	char	**result;
-	char 	*temp;
-	char	*str;
-	char	*aux;
-	int	i;
+    int		*index;
+    int		i;
 
-	str = ft_strjoin(argv[1], " ");
-	i = 2;
-	while(argc-- > 2)
+    i = 0;
+	index = malloc(argc * sizeof(int));
+	if (!index)
+		exit_error();
+	while (argv[i])
+    {
+		index[i] = ft_atoi(argv[i]);
+		if (index[i] == OVER_FLOW)
+			exit_error();
+        ++i;
+    }
+	array_sort(index, argc);
+    return (index);
+}
+
+void node_indexer_creator(char **argv, n_list **stack_a, int *index)
+{
+	int		n;
+	int		i;
+	n_list	*new_node;
+
+	i = 0;
+	new_node = NULL;
+	while (argv[i])
 	{
-		temp = ft_strjoin(argv[i], " ");
-		aux = ft_strjoin(str, temp);
-		free(str);
-                free(temp);
-		str = aux;
+		n = ft_atoi(argv[i]);
+		if (!(n >= INT_MIN && n <= INT_MAX) || value_exists(*stack_a, n))
+			exit_error();
+		new_node = lstnew(n);
+		if (!new_node)
+            exit_error();
+		lstadd_back(stack_a, new_node);
 		i++;
 	}
-	result = ft_split(str, ' ');
-	free(str);
-	return(result);
+	index_lst(stack_a, index);
 }

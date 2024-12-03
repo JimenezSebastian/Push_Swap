@@ -1,28 +1,42 @@
 NAME = push_swap.a
 
-CC = cc
-FLAGS = -Wall -Wextra -Werror
+CC = gcc
 
-AR = ar rcs
-RM = rm -f
+CFLAGS = -Wall -Wextra -Werror
 
-SOURCES = $(wildcard *.c)
-OBJ = $(SOURCES:.c=.o)
+RM = rm -rf
 
-$(NAME): $(OBJ)
-	@$(AR) $(NAME) $(OBJ)
-	@echo "Libreria $(NAME) creada."
+LIBFT = libft/libft.a
 
-all: $(NAME)
+SRCS = 	src/push_swap.c\
+		src/movements.c\
+		src/parse.c\
+		src/utils.c\
 
-clean: 
-	@$(RM) $(OBJ)
-	 @echo "Archivos objeto eliminados."
+OBJ =  $(SRCS:.c=.o)
 
-fclean: clean 
-	@$(RM) $(NAME)
-	@echo "Archivos objeto y .a eliminados."
+CYAN = \033[0;96m
+DEF_COLOR = \033[0;49m
 
-re: fclean all
+$(NAME) : $(OBJ)
+	@echo "$(CYAN) ☕ EXECUTE DEFAULT PART! ☕ $(DEF_COLOR)"
+	make all -C lib/libft
+	gcc $(CFLAGS)  $(OBJ) $(LIBFT) -o $(NAME)
+	@echo "$(CYAN) ✨ ¡SUCCESS! ✨ $(DEF_COLOR)"
 
-.PHONY: all clean fclean re
+all : $(NAME)
+
+fclean : clean
+	$(RM) $(NAME)
+	make fclean -C lib/libft
+	@echo "$(CYAN) ✨ ¡CLEANED! ✨ $(DEF_COLOR)"
+
+clean :
+	@echo "$(CYAN) 🍩 ¡INIT CLEAN! 🍩 $(DEF_COLOR)"
+	$(RM) $(NAME)
+	$(RM) $(OBJ)
+	make clean -C lib/libft
+
+re : fclean all
+
+.PHONY:     all clean fclean re bonus

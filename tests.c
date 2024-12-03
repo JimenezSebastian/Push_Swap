@@ -1,5 +1,5 @@
-#include <stdio.h>
-
+/*
+#include <push_swap.h>
 int get_max_bits(t_stack *stack)
 {
     	int max;
@@ -8,7 +8,7 @@ int get_max_bits(t_stack *stack)
 	while (ptr)
 	{
 		if (ptr->index > max)
-			max = ptr->index;
+		max = ptr->index;
 		ptr = ptr->next;
 	}
     	return (int)(log2(max)) + 1;  // Si los índices son positivos
@@ -79,6 +79,34 @@ int main ()
 	{
 		printf("%d", nums[i]);
 		++i;
+	}
+	return (0);
+}
+*/
+#include <stdio.h>
+#include <unistd.h>
+#include "libft.h"
+
+
+
+int main(int argc, char **argv)
+{
+	int		i = 0;
+	char	*str;
+	char	**new;
+
+	i = 1;
+	while((str = argv[i]))
+	{
+		printf("%s\n", str);
+		++i;
+	}
+	i = 0;
+	new = clean_argv(argv, argc);
+	while((str = new[i]))
+	{
+		printf("%s\n", str);
+		++i;	
 	}
 	return (0);
 }
