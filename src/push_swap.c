@@ -11,8 +11,10 @@ void test(n_list *stack_a)
 }
 void tester_arr(int *index, int argc)
 {
+	printf("Testindex\n");
 	while (argc-- >= 1)
 		printf("t%i", *(index++));
+	printf("\n");
 }
 
 void parse(int argc, char **argv, n_list **stack_a)
@@ -34,7 +36,6 @@ int main(int argc, char **argv)
     if (argc < 2)
 		exit(1);
 	parse(argc, argv, &stack_a);
-	test(stack_a);
 	algorithm(&stack_a, &stack_b);
 	test(stack_a);
 	return (0);

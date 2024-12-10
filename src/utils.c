@@ -64,7 +64,7 @@ int lst_size(n_list *lst)
 	}
 	return (size);
 }
-
+/*
 int get_max_bits(n_list *lst)
 {
 	int		max;
@@ -81,6 +81,7 @@ int get_max_bits(n_list *lst)
 
 	return ((int)log2(max) + 1);
 }
+*/
 
 void    index_lst(n_list **stack_a, int *index)
 {

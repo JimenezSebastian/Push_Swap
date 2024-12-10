@@ -13,11 +13,12 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+#include "libft.h"
+
 #include <stdlib.h>
 #include <limits.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "libft.h"
 #include <math.h>
 #include <stddef.h>
 
@@ -29,6 +30,7 @@ typedef struct n_list
 }       n_list;
 
 void tester_arr(int *index, int argc);
+void test(n_list *stack_a);
 
 // Parse
 char **cleaner_argv(char **argv, int argc);
@@ -43,7 +45,7 @@ void    exit_error(void);
 n_list  *lstnew(int content);
 int     lstadd_back(n_list **list, n_list *newNode);
 int     lst_size(n_list *lst);
-int     get_max_bits(n_list *lst);
+//int     get_max_bits(n_list *lst);
 void    index_lst(n_list **stack_a, int *index);
 void    array_sort(int *nums, int size_array);
 void    overflow(char *str, int *index);

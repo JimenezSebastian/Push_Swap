@@ -22,11 +22,9 @@ DEF_COLOR = \033[0;49m
 $(NAME) : $(OBJ)
 	@echo "$(CYAN) ☕ EXECUTE DEFAULT PART! ☕ $(DEF_COLOR)"
 	make all -C libft
-#	make clean -C libft
 	gcc $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) 
 	@echo "$(CYAN) ✨ ¡SUCCESS! ✨ $(DEF_COLOR)"
-#	make clean
-
+	
 all : $(NAME)
 
 fclean : clean
