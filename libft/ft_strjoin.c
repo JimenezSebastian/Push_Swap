@@ -14,17 +14,17 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*str;
-	char	*index;
+	char	*s3;
+	char	*ptr;
 
-	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	index = str;
-	if (!str)
+	s3 = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!s3)
 		return (NULL);
+	ptr = s3;
 	while (*s1)
-		*(str++) = *(s1++);
+		*(s3++) = *(s1++);
 	while (*s2)
-		*(str++) = *(s2++);
-	*str = '\0';
-	return (index);
+		*(s3++) = *(s2++);
+	*s3 = '\0';
+	return (ptr);
 }

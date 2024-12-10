@@ -12,7 +12,6 @@
 
 #include "push_swap.h"
 
-
 char **cleaner_argv(char **argv, int argc)
 {
 	char    **result;
@@ -40,19 +39,19 @@ char **cleaner_argv(char **argv, int argc)
     return (free(new), result);
 }
 
-int	digits_checker(char **newArgv)
+int digits_checker(char **argv)
 {
 	char	*str;
 	int		size;
 	int		s;
 
 	size = 0;
-	while((str = newArgv[size]) != NULL)
+	while((str = argv[size]) != NULL)
 	{
 		s = 0;
 		while (str[s])
 		{
-			if (str[s] >= '0' && str[s] <= '9' || str[s] == ' ')
+			if ((str[s] >= '0' && str[s] <= '9') || str[s] == ' ')
 				++s;
 			else if (str[s] == '+' && str[s + 1] >= '0' && str[s + 1] <= '9')
 				++s;
@@ -77,16 +76,16 @@ int *make_index(char **argv, int argc)
 		exit_error();
 	while (argv[i])
     {
-		index[i] = ft_atoi(argv[i]);
-		if (index[i] == OVER_FLOW)
-			exit_error();
+		index[i] = atoi(argv[i]);
+		if (index[i] == 0)
+			overflow(argv[i], index);
         ++i;
     }
 	array_sort(index, argc);
     return (index);
 }
 
-void node_indexer_creator(char **argv, n_list **stack_a, int *index)
+void node_indexer_creator(n_list **stack_a, int *index, int argc)
 {
 	int		n;
 	int		i;
@@ -94,10 +93,10 @@ void node_indexer_creator(char **argv, n_list **stack_a, int *index)
 
 	i = 0;
 	new_node = NULL;
-	while (argv[i])
+	while (argc-- >= 1)
 	{
-		n = ft_atoi(argv[i]);
-		if (!(n >= INT_MIN && n <= INT_MAX) || value_exists(*stack_a, n))
+		n = index[i];
+		if (value_exists(*stack_a, n))
 			exit_error();
 		new_node = lstnew(n);
 		if (!new_node)

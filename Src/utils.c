@@ -1,50 +1,13 @@
 #include "push_swap.h"
 
-void algorithm(n_list **stack_a, n_list **stack_b)
-{
-	int max_bits;
-	int i;
-	int size;
-	int j;
-
-	i = 0;
-	max_bits = get_max_bits(*stack_a);
-//	size = lst_size(*stack_a);
-	while (i < max_bits)
-	{
-		j = 0;
-		size = lst_size(*stack_a);
-		while (j < size)
-		{
-			if ((((*stack_a)->index >> i) & 1) == 0)
-			{
-				pb(stack_a, stack_b);
-				write(1, "pb\n", 3);
-			}
-			else
-			{
-				ra_rb(stack_a);
-				write(1, "ra\n", 3);
-			}
-			j++;
-		}
-		while (*stack_b)
-		{
-			pa(stack_a, stack_b);
-			write(1, "pa\n", 3);
-		}
-        	i++;
-	}
-}
-
-int value_exists(n_list *stack_a, int p)
+int value_exists(n_list *stack_a, int n)
 {
         n_list *temp;
 
         temp = stack_a;
         while (temp)
         {
-                if ((int)temp->num == p)
+                if ((int)temp->num == n)
                         return (1);
                 temp = temp->next;
         }
@@ -161,26 +124,31 @@ void array_sort(int *nums, int size_array)
 	}
 }
 
-char *ft_strcat(char *dest, const char *src)
+void overflow(char *str, int *index)
 {
-    char *dest_copy = dest;
+	while (*str)
+	{
+		if (*str >= 1 && *str <= 9)
+		{
+			free(index);
+			exit_error();
+		}
+		++str;
+	}
+}
 
-    // Mover el puntero de 'dest' hasta el final de la cadena
-    while (*dest)
-    {
-        dest++;
-    }
-
-    // Copiar cada caracter de 'src' a 'dest'
-    while (*src)
-    {
-        *dest = *src;
-        dest++;
-        src++;
-    }
-
-    // Terminar la cadena 'dest' con el carácter nulo '\0'
-    *dest = '\0';
-
-    return (dest_copy);  // Devolver la cadena original 'dest'
+int	verify(n_list *stack_a)
+{
+	int save;
+	
+	save = -2147483648;
+	while (stack_a)
+	{
+		if (stack_a->num < save)
+			return (1);
+		else
+			save = stack_a->num;
+		stack_a = stack_a->next;
+	}
+	return (0);
 }

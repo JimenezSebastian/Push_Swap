@@ -33,7 +33,7 @@ int	signos(const char *str)
 	{
 		if (*str == '-')
 			++minus;
-		else if (*str == '+')
+		if (*str == '+')
 			++plus;
 		++str;
 	}
@@ -46,20 +46,25 @@ int	signos(const char *str)
 
 int	ft_atoi(const char *str)
 {
-	int	result;
-	int	sign;
+	int			r;
+	int			sign;
+	long long	n;
 
-	result = 0;
+	n = 0;
 	str = isspaces(str);
 	sign = signos(str);
 	while (*str == '+' || *str == '-')
 		++str;
 	while (*str >= '0' && *str <= '9')
 	{
-		result = result * 10 + (*str - '0');
+		n = n * 10 + (*str - '0');
 		++str;
 	}
-	return (result * sign);
+	n *= (long long)sign;
+	if (n < -2147483648 || n > 2147483647)
+		return (0);
+	r = (int)n;
+	return (r);
 }
 
 /*

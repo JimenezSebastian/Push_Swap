@@ -6,7 +6,7 @@
 /*   By: almejia- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 06:31:02 by almejia-          #+#    #+#             */
-/*   Updated: 2024/10/26 19:34:13 by almejia-         ###   ########.fr       */
+/*   Updated: 2024/05/05 06:34:07 by almejia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <stdio.h>
+# include <limits.h>
 
 int		ft_isalpha(int i);
 int		ft_isdigit(int i);
@@ -28,6 +30,7 @@ int		ft_tolower(int i);
 int		ft_atoi(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
+char	*ft_strcat(char *dest, const char *src);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 char	*ft_strtrim(char const *s1, char const *set);
@@ -53,5 +56,20 @@ size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+
+}						t_list;
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **alst, t_list *new);
+int		ft_lstsize(t_list *lst);
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void*));
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *));
 
 #endif
