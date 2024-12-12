@@ -64,26 +64,9 @@ int lst_size(n_list *lst)
 	}
 	return (size);
 }
-/*
-int get_max_bits(n_list *lst)
-{
-	int		max;
-	n_list	*ptr;
 
-	max = -2147483647;
-	ptr = lst;
-	while (ptr)
-	{
-		if (ptr->index > max)
-			max = ptr->index;
-		ptr = ptr->next;
-	}
 
-	return ((int)log2(max) + 1);
-}
-*/
-
-void    index_lst(n_list **stack_a, int *index)
+void index_lst(n_list **stack_a, int *index)
 {
 	int		i;
 	n_list	*ptr;
@@ -96,32 +79,6 @@ void    index_lst(n_list **stack_a, int *index)
 			i++;
 		ptr->index = i;
 		ptr = ptr->next;
-	}
-}
-
-void array_sort(int *nums, int size_array)
-{
-	int	i;
-	int	flag;
-	int	temp;
-	
-	while (1)
-	{
-		i = 0;
-		flag = 0;
-		while (i < (size_array - 1))
-		{
-			if (nums[i] > nums[i + 1])
-			{
-				temp = nums[i];
-				nums[i] = nums[i + 1];
-				nums[i + 1] = temp;
-				flag = 1;
-			}
-			++i;
-		}
-		if (flag == 0)
-			break;
 	}
 }
 
@@ -153,3 +110,40 @@ int	verify(n_list *stack_a)
 	}
 	return (0);
 }
+
+int find_min_index(n_list *stack)
+{
+    int min_index = 0;
+    int min_value = stack->index;
+    int current_index = 0;
+
+    while (stack)
+    {
+        if (stack->index < min_value)
+        {
+            min_value = stack->index;
+            min_index = current_index;
+        }
+        stack = stack->next;
+        current_index++;
+    }
+    return min_index;
+}
+/*
+int get_max_bits(n_list *lst)
+{
+	int		max;
+	n_list	*ptr;
+
+	max = -2147483647;
+	ptr = lst;
+	while (ptr)
+	{
+		if (ptr->index > max)
+			max = ptr->index;
+		ptr = ptr->next;
+	}
+
+	return ((int)log2(max) + 1);
+}
+*/

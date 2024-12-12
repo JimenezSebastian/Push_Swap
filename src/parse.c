@@ -81,28 +81,28 @@ int *make_index(char **argv, int argc)
 			overflow(argv[i], index);
         ++i;
     }
-	array_sort(index, argc);
     return (index);
 }
 
 void node_indexer_creator(n_list **stack_a, int *index, int argc)
 {
-	int		n;
 	int		i;
+	int		cpy;
 	n_list	*new_node;
 
 	i = 0;
 	new_node = NULL;
-	while (argc-- >= 1)
+	cpy = argc;
+	while (cpy-- >= 1)
 	{
-		n = index[i];
-		if (value_exists(*stack_a, n))
+		if (value_exists(*stack_a, index[i]))
 			exit_error();
-		new_node = lstnew(n);
+		new_node = lstnew(index[i]);
 		if (!new_node)
             exit_error();
 		lstadd_back(stack_a, new_node);
 		i++;
 	}
+	array_sort(index, argc);
 	index_lst(stack_a, index);
 }

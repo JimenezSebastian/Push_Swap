@@ -6,7 +6,7 @@ void sa_sb(n_list **lst)
 	n_list *second;
 
 	first = *lst;
-       	second = first->next;	
+    second = first->next;	
 	first->next = second->next;
 	second->next = first;
 	*lst = second;
@@ -71,8 +71,6 @@ void rra_rrb(n_list **lst)
 	n_list *second_last;
 	n_list *last;
 
-//	if (!lst || !lst->next)
-//		return;
 	second_last = *lst;
 	while (second_last->next->next)
 		second_last = second_last->next;

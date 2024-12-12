@@ -29,7 +29,7 @@ typedef struct n_list
         struct n_list *next;
 }       n_list;
 
-void tester_arr(int *index, int argc);
+void tester_indx(int *index, int argc);
 void test(n_list *stack_a);
 
 // Parse
@@ -38,16 +38,14 @@ int digits_checker(char **argv);
 int *make_index(char **argv, int argc);
 void node_indexer_creator(n_list **stack_a, int *index, int argc);
 
-// utils
-void    algorithm(n_list **stack_a, n_list **stack_b);
+// utils //int     get_max_bits(n_list *lst);
+int find_min_index(n_list *stack);
 int     value_exists(n_list *stack_a, int n);
 void    exit_error(void);
 n_list  *lstnew(int content);
 int     lstadd_back(n_list **list, n_list *newNode);
 int     lst_size(n_list *lst);
-//int     get_max_bits(n_list *lst);
 void    index_lst(n_list **stack_a, int *index);
-void    array_sort(int *nums, int size_array);
 void    overflow(char *str, int *index);
 int     verify(n_list *stack_a);
 
@@ -55,5 +53,13 @@ int     verify(n_list *stack_a);
 void	pb(n_list **a , n_list **b);
 void	ra_rb(n_list **lst);
 void	pa(n_list **a, n_list **b);
+void    rra_rrb(n_list **lst);
+void    sa_sb(n_list **lst);
+
+// Algorithms   
+void    algorithm(n_list **stack_a, n_list **stack_b);
+void    array_sort(int *nums, int size_array);
+void    sort_five_or_less(n_list **stack_a, n_list **stack_b, int argc);
+void    sort_three(n_list **stack_a);
 
 #endif
