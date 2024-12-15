@@ -1,4 +1,4 @@
-NAME = push_swap
+NAME = push_swap.a
 
 CC = gcc
 
@@ -12,6 +12,7 @@ SRCS = 	src/push_swap.c\
 		src/movements.c\
 		src/parse.c\
 		src/utils.c\
+		src/utils_ext.c\
 		src/algorithms.c\
 
 OBJ =  $(SRCS:.c=.o)

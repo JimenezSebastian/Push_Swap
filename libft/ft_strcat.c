@@ -1,12 +1,24 @@
-char *ft_strcat(char *dest, const char *src)
-{
-    char *ptr;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: almejia- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/15 18:36:24 by almejia-          #+#    #+#             */
+/*   Updated: 2024/12/15 18:36:47 by almejia-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-    ptr = dest;
-    while (*ptr)
-        ptr++;
-    while (*src)
-        *(ptr++) = *(src++);
-    *ptr = '\0';
-    return (dest);
+char	*ft_strcat(char *dest, const char *src)
+{
+	char	*ptr;
+
+	ptr = dest;
+	while (*ptr)
+		ptr++;
+	while (*src)
+		*(ptr++) = *(src++);
+	*ptr = '\0';
+	return (dest);
 }
