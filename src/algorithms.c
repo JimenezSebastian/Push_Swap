@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	algorithm(n_list **stack_a, n_list **stack_b)
+void	algorithm(t_list **stack_a, t_list **stack_b)
 {
 	int	i;
 	int	size;
@@ -63,7 +63,7 @@ void	array_sort(int *nums, int size_array)
 	}
 }
 
-void	sort_five_or_less(n_list **stack_a, n_list **stack_b, int argc)
+void	sort_five_or_less(t_list **stack_a, t_list **stack_b, int argc)
 {
 	int	min_index;
 	int	stack_size;
@@ -90,7 +90,7 @@ void	sort_five_or_less(n_list **stack_a, n_list **stack_b, int argc)
 	}
 }
 
-void	sort_three(n_list **stack_a)
+void	sort_three(t_list **stack_a)
 {
 	int	first;
 	int	second;

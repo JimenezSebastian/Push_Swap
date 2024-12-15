@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	test(n_list *stack_a)
+void	test(t_list *stack_a)
 {
 	while (stack_a)
 	{
@@ -29,21 +29,22 @@ void	tester_indx(int *index, int argc)
 	printf("\n");
 }
 
-int	parse(int argc, char **argv, n_list **stack_a)
+int	parse(int argc, char **argv, t_list **stack_a)
 {
 	int	*index;
 
 	argv = cleaner_argv(argv, argc);
 	argc = digits_checker(argv);
 	index = make_index(argv, argc);
-	node_indexer_creator(stack_a, index, argc);
-	return (free(index),free(argv), argc);
+	stack_generator(stack_a, index, argc, argv);
+	free_V2(NULL, index, argv);
+	return (argc);
 }
 
 int	main(int argc, char **argv)
 {
-	n_list	*stack_a;
-	n_list	*stack_b;
+	t_list	*stack_a;
+	t_list	*stack_b;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -54,5 +55,6 @@ int	main(int argc, char **argv)
 		sort_five_or_less(&stack_a, &stack_b, argc);
 	algorithm(&stack_a, &stack_b);
 	test(stack_a);
+	free_V2(&stack_a, NULL, NULL);
 	return (0);
 }

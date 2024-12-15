@@ -1,9 +1,9 @@
 #include "push_swap.h"
 
-void sa_sb(n_list **lst)
+void	sa_sb(t_list **lst)
 {
-	n_list *first;
-	n_list *second;
+	t_list	*first;
+	t_list	*second;
 
 	first = *lst;
     second = first->next;	
@@ -12,15 +12,9 @@ void sa_sb(n_list **lst)
 	*lst = second;
 }
 
-void ss(n_list **a, n_list **b)
-{	
-	sa_sb(a);
-	sa_sb(b);	
-}
-
-void pa(n_list **a, n_list **b)
+void pa(t_list **a, t_list **b)
 {
-	n_list  *temp;
+	t_list  *temp;
 
 	if (!(*b))
 		return;
@@ -30,9 +24,9 @@ void pa(n_list **a, n_list **b)
 	*a = temp;
 }
 
-void pb(n_list **a , n_list **b)
+void pb(t_list **a , t_list **b)
 {
-	n_list *temp;
+	t_list *temp;
 
 	if(!(*a))
 		return;
@@ -42,11 +36,11 @@ void pb(n_list **a , n_list **b)
 	*b = temp;
 }
 
-void ra_rb(n_list **lst)
+void ra_rb(t_list **lst)
 {
-	n_list *temp;
-	n_list *last;
-	n_list *temp2;
+	t_list *temp;
+	t_list *last;
+	t_list *temp2;
 	
 	if (!lst)
 		return;
@@ -60,16 +54,10 @@ void ra_rb(n_list **lst)
 	*lst = temp2; // nueva cabecera segundo nodo
 }
 
-void rr(n_list **a, n_list **b)
+void rra_rrb(t_list **lst)
 {
-	ra_rb(a);
-	ra_rb(b);
-}
-
-void rra_rrb(n_list **lst)
-{
-	n_list *second_last;
-	n_list *last;
+	t_list *second_last;
+	t_list *last;
 
 	second_last = *lst;
 	while (second_last->next->next)
@@ -80,8 +68,22 @@ void rra_rrb(n_list **lst)
 	*lst = last;
 }
 
+/*
+void rr(n_list **a, n_list **b)
+{
+	ra_rb(a);
+	ra_rb(b);
+}
+
 void rrr(n_list **a, n_list **b)
 {
 	rra_rrb(a);
 	rra_rrb(b);
 }
+
+void ss(n_list **a, n_list **b)
+{	
+	sa_sb(a);
+	sa_sb(b);	
+}
+*/
