@@ -76,7 +76,7 @@ int *make_index(char **argv, int argc)
 		exit_error();
 	while (argv[i])
     {
-		index[i] = atoi(argv[i]);
+		index[i] = ft_atoi(argv[i]);
 		if (index[i] == 0)
 			overflow(argv[i], index);
         ++i;

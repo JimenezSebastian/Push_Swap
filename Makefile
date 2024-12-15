@@ -1,8 +1,8 @@
-NAME = push_swap.a
+NAME = push_swap
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g  -Wall -Wextra -Werror
 
 RM = rm -rf
 

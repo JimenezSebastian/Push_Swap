@@ -1,24 +1,48 @@
 #include "push_swap.h"
 
-int value_exists(n_list *stack_a, int n)
+int	value_exists(n_list *stack_a, int n)
 {
-        n_list *temp;
+	n_list *temp;
 
-        temp = stack_a;
-        while (temp)
-        {
-                if ((int)temp->num == n)
-                        return (1);
-                temp = temp->next;
-        }
-        return (0);
+	temp = stack_a;
+	while (temp)
+	{
+		if ((int)temp->num == n)
+        	return (1);
+			temp = temp->next;
+	}
+	return (0);
 }
 
-void exit_error(void)
+void	exit_error(void)
 {
-        ft_putstr_fd("Error", 1);
-        exit(1);
+	ft_putstr_fd("Error", 1);
+	exit(1);	
 }
+
+/*
+void abort_and_cleanup(int *ptr, n_list *stack)
+{
+	ft_putstr_fd("Error", 1);
+	exit(1);
+}
+
+void free_list(n_list *stack, int *ptr, char **argv)
+{
+	int		i;
+    n_list	*temp;
+
+    while (stack)
+	{
+		
+        temp = stack;       
+        stack = stack->next; 
+        (free(temp), free(argv[i]));
+    }
+	free(index);
+	free()
+}
+*/
 
 n_list *lstnew(int content)
 {
@@ -65,7 +89,6 @@ int lst_size(n_list *lst)
 	return (size);
 }
 
-
 void index_lst(n_list **stack_a, int *index)
 {
 	int		i;
@@ -82,15 +105,12 @@ void index_lst(n_list **stack_a, int *index)
 	}
 }
 
-void overflow(char *str, int *index)
+void	overflow(char *str, int *index)
 {
 	while (*str)
 	{
-		if (*str >= 1 && *str <= 9)
-		{
-			free(index);
-			exit_error();
-		}
+		if (*str >= '1' && *str <= '9')
+			(free(index), exit_error());
 		++str;
 	}
 }
@@ -129,21 +149,3 @@ int find_min_index(n_list *stack)
     }
     return min_index;
 }
-/*
-int get_max_bits(n_list *lst)
-{
-	int		max;
-	n_list	*ptr;
-
-	max = -2147483647;
-	ptr = lst;
-	while (ptr)
-	{
-		if (ptr->index > max)
-			max = ptr->index;
-		ptr = ptr->next;
-	}
-
-	return ((int)log2(max) + 1);
-}
-*/

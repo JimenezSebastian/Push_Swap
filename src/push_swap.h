@@ -38,8 +38,8 @@ int digits_checker(char **argv);
 int *make_index(char **argv, int argc);
 void node_indexer_creator(n_list **stack_a, int *index, int argc);
 
-// utils //int     get_max_bits(n_list *lst);
-int find_min_index(n_list *stack);
+// utils
+int     find_min_index(n_list *stack);
 int     value_exists(n_list *stack_a, int n);
 void    exit_error(void);
 n_list  *lstnew(int content);

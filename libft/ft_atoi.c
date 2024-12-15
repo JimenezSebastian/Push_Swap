@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: almejia- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 14:28:54 by almejia-          #+#    #+#             */
-/*   Updated: 2024/03/29 05:00:13 by almejia-         ###   ########.fr       */
+/*   Created: 2024/12/12 15:34:57 by almejia-          #+#    #+#             */
+/*   Updated: 2024/12/12 15:35:02 by almejia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 const char	*isspaces(const char *str)
 {
@@ -56,24 +58,18 @@ int	ft_atoi(const char *str)
 	while (*str == '+' || *str == '-')
 		++str;
 	while (*str >= '0' && *str <= '9')
-	{
-		n = n * 10 + (*str - '0');
-		++str;
-	}
-	n *= (long long)sign;
-	if (n < -2147483648 || n > 2147483647)
+		n = n * 10 + (*(str++) - '0');
+	(void)sign;
+	if (n < INT_MIN || n > INT_MAX)
 		return (0);
+	n *= sign;
 	r = (int)n;
 	return (r);
 }
-
 /*
-#include<stdlib.h>
-#include<stdio.h>
 int main()
 {
-	printf("%d", ft_atoi("    -123abc123"));
-	printf("%d", atoi("    -123abc123"));
+	printf("%i", ft_atoi("-2147483648"));
 	return (0);
 }
 */
