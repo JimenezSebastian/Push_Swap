@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_ext.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: almejia- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/16 18:19:47 by almejia-          #+#    #+#             */
+/*   Updated: 2024/12/16 18:19:50 by almejia-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	clean_exit(t_list **stack, int *index, char **argv)
 {
 	if (stack || index || argv)
-		free_V2(stack, index, argv);
+		free_v2(stack, index, argv);
 	ft_putstr_fd("Error", 1);
 	exit(1);
 }
 
-void	free_V2(t_list **stack, int *index, char **argv)
+void	free_v2(t_list **stack, int *index, char **argv)
 {
 	int		i;
 	t_list	*temp;
@@ -16,8 +28,8 @@ void	free_V2(t_list **stack, int *index, char **argv)
 	i = 0;
 	while (stack && *stack)
 	{
-		temp = *stack;       
-		*stack = (*stack)->next; 
+		temp = *stack;
+		*stack = (*stack)->next;
 		free(temp);
 	}
 	if (argv)
@@ -30,7 +42,7 @@ void	free_V2(t_list **stack, int *index, char **argv)
 		free(argv);
 	}
 	if (index)
-	free(index);
+		free (index);
 }
 
 void	overflow(char *str, int *index, char **argv)

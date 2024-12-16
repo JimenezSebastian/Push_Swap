@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: almejia- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/16 18:19:38 by almejia-          #+#    #+#             */
+/*   Updated: 2024/12/16 18:19:40 by almejia-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	value_exists(t_list *stack_a, int n)
@@ -16,14 +28,14 @@ int	value_exists(t_list *stack_a, int n)
 
 t_list	*lstnew(int content)
 {
-	t_list	*newNode;
+	t_list	*new_node;
 
-	newNode = malloc(sizeof(t_list));
-	if (!newNode)
-		return(NULL);
-	newNode -> num = content;
-	newNode -> next = NULL;
-	return (newNode);
+	new_node = malloc(sizeof(t_list));
+	if (!new_node)
+		return (NULL);
+	new_node -> num = content;
+	new_node -> next = NULL;
+	return (new_node);
 }
 
 int	lstadd_back(t_list **list, t_list *newNode)
@@ -32,11 +44,11 @@ int	lstadd_back(t_list **list, t_list *newNode)
 
 	ptr = *list;
 	if (!newNode)
-		return(1);
+		return (1);
 	else if (!(*list))
 	{
 		*list = newNode;
-		return(0);
+		return (0);
 	}
 	while (ptr->next)
 		ptr = ptr->next;
@@ -74,5 +86,3 @@ void	index_lst(t_list **stack_a, int *index)
 		ptr = ptr->next;
 	}
 }
-
-

@@ -37,7 +37,7 @@ int	parse(int argc, char **argv, t_list **stack_a)
 	argc = digits_checker(argv);
 	index = make_index(argv, argc);
 	stack_generator(stack_a, index, argc, argv);
-	free_V2(NULL, index, argv);
+	free_v2(NULL, index, argv);
 	return (argc);
 }
 
@@ -55,6 +55,6 @@ int	main(int argc, char **argv)
 		sort_five_or_less(&stack_a, &stack_b, argc);
 	algorithm(&stack_a, &stack_b);
 	test(stack_a);
-	free_V2(&stack_a, NULL, NULL);
+	free_v2(&stack_a, NULL, NULL);
 	return (0);
 }

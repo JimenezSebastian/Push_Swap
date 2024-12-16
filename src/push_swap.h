@@ -45,7 +45,7 @@ int		lst_size(t_list *lst);
 int		verify(t_list *stack_a);
 void	index_lst(t_list **stack_a, int *index);
 void	overflow(char *str, int *index, char **argv);
-void	free_V2(t_list **stack, int *index, char **argv);
+void	free_v2(t_list **stack, int *index, char **argv);
 void	clean_exit(t_list **stack, int *index, char **argv);
 t_list	*lstnew(int content);
 

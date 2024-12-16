@@ -12,45 +12,46 @@
 
 #include "push_swap.h"
 
-char **cleaner_argv(char **argv, int argc)
+char	**cleaner_argv(char **argv, int argc)
 {
-	char    **result;
-	char    *new;
-    int     total_length;
-    int     i;
+	char	**result;
+	char	*new;
+	int		total_length;
+	int		i;
 
-    i = 1;
+	i = 1;
 	total_length = 0;
-    while (i < argc)
-        total_length += ft_strlen(argv[i++]) + 1;
-    new = malloc(total_length);
-    if (!new)
+	while (i < argc)
+		total_length += ft_strlen(argv[i++]) + 1;
+	new = malloc(total_length);
+	if (!new)
 		clean_exit(NULL, NULL, NULL);
-    new[0] = '\0';
-    i = 1;
-    while (i < argc)
-    {
-        ft_strcat(new, argv[i]);
-        if (i++ < argc - 1)
-            ft_strcat(new, " ");
-    }
-    result = ft_split(new, ' ');
+	new[0] = '\0';
+	i = 1;
+	while (i < argc)
+	{
+		ft_strcat(new, argv[i]);
+		if (i++ < argc - 1)
+			ft_strcat(new, " ");
+	}
+	result = ft_split(new, ' ');
 	free(new);
 	if (!result)
 		clean_exit(NULL, NULL, NULL);
-    return (result);
+	return (result);
 }
 
-int digits_checker(char **argv)
+int	digits_checker(char **argv)
 {
 	char	*str;
 	int		size;
 	int		s;
 
 	size = 0;
-	while((str = argv[size]) != NULL)
+	while (argv[size])
 	{
 		s = 0;
+		str = argv[size];
 		while (str[s])
 		{
 			if ((str[s] >= '0' && str[s] <= '9') || str[s] == ' ')
@@ -59,7 +60,7 @@ int digits_checker(char **argv)
 				++s;
 			else if (str[s] == '-' && str[s + 1] >= '0' && str[s + 1] <= '9')
 				++s;
-			else 
+			else
 				clean_exit(NULL, NULL, argv);
 		}
 		++size;
@@ -67,26 +68,26 @@ int digits_checker(char **argv)
 	return (size);
 }
 
-int *make_index(char **argv, int argc)
+int	*make_index(char **argv, int argc)
 {
-    int		*index;
-    int		i;
+	int		*index;
+	int		i;
 
-    i = 0;
+	i = 0;
 	index = malloc(argc * sizeof(int));
 	if (!index)
 		clean_exit(NULL, NULL, argv);
 	while (argv[i])
-    {
+	{
 		index[i] = ft_atoi(argv[i]);
 		if (index[i] == 0)
 			overflow(argv[i], index, argv);
-        ++i;
-    }
-    return (index);
+		++i;
+	}
+	return (index);
 }
 
-void stack_generator(t_list **stack_a, int *index, int argc, char **argv)
+void	stack_generator(t_list **stack_a, int *index, int argc, char **argv)
 {
 	int		i;
 	int		cpy;
@@ -101,7 +102,7 @@ void stack_generator(t_list **stack_a, int *index, int argc, char **argv)
 			clean_exit(stack_a, index, argv);
 		new_node = lstnew(index[i]);
 		if (!new_node)
-            clean_exit(stack_a, index, argv);
+			clean_exit(stack_a, index, argv);
 		lstadd_back(stack_a, new_node);
 		i++;
 	}

@@ -2,7 +2,7 @@ NAME = push_swap.a
 
 CC = gcc
 
-CFLAGS = -g  -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3 fsanitize=adreess
 
 RM = rm -rf
 

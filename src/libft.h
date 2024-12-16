@@ -56,20 +56,4 @@ size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-
-}						t_stack;
-t_stack	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_stack **alst, t_stack *new);
-int		ft_lstsize(t_stack *lst);
-t_stack	*ft_lstlast(t_stack *lst);
-void	ft_lstadd_back(t_stack **lst, t_stack *new);
-void	ft_lstdelone(t_stack *lst, void (*del)(void *));
-void	ft_lstclear(t_stack **lst, void (*del)(void *));
-void	ft_lstiter(t_stack *lst, void (*f)(void*));
-t_stack	*ft_lstmap(t_stack *lst, void *(*f)(void*), void (*del)(void *));
-
 #endif

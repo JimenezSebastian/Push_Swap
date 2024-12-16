@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movements.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: almejia- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/16 18:19:58 by almejia-          #+#    #+#             */
+/*   Updated: 2024/12/16 18:20:00 by almejia-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sa_sb(t_list **lst)
@@ -6,58 +18,52 @@ void	sa_sb(t_list **lst)
 	t_list	*second;
 
 	first = *lst;
-    second = first->next;	
+	second = first->next;
 	first->next = second->next;
 	second->next = first;
 	*lst = second;
 }
 
-void pa(t_list **a, t_list **b)
+void	pa(t_list **a, t_list **b)
 {
-	t_list  *temp;
+	t_list	*temp;
 
-	if (!(*b))
-		return;
 	temp = *b;
 	*b = (*b)->next;
 	temp->next = *a;
 	*a = temp;
 }
 
-void pb(t_list **a , t_list **b)
+void	pb(t_list **a, t_list **b)
 {
-	t_list *temp;
+	t_list	*temp;
 
-	if(!(*a))
-		return;
 	temp = *a;
 	*a = (*a)->next;
 	temp->next = *b;
 	*b = temp;
 }
 
-void ra_rb(t_list **lst)
+void	ra_rb(t_list **lst)
 {
-	t_list *temp;
-	t_list *last;
-	t_list *temp2;
-	
-	if (!lst)
-		return;
-	temp = *lst; // nodo 1
-	temp2 = temp->next; // nodo 2
+	t_list	*temp;
+	t_list	*last;
+	t_list	*temp2;
+
+	temp = *lst;
+	temp2 = temp->next;
 	last = *lst;
 	while (last->next)
 		last = last->next;
-	temp->next = NULL; // nodo huerfanito - 
-	last->next = temp; //penultimo nodo apuntando al huerfanito
-	*lst = temp2; // nueva cabecera segundo nodo
+	temp->next = NULL;
+	last->next = temp;
+	*lst = temp2;
 }
 
-void rra_rrb(t_list **lst)
+void	rra_rrb(t_list **lst)
 {
-	t_list *second_last;
-	t_list *last;
+	t_list	*second_last;
+	t_list	*last;
 
 	second_last = *lst;
 	while (second_last->next->next)
