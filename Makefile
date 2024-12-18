@@ -2,7 +2,7 @@ NAME = push_swap
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -rf
 
@@ -23,14 +23,13 @@ DEF_COLOR = \033[0;49m
 $(NAME) : $(OBJ)
 	@echo "$(CYAN) ☕ EXECUTE DEFAULT PART! ☕ $(DEF_COLOR)"
 	make all -C libft
-	gcc $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) 
+	gcc $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 	@echo "$(CYAN) ✨ ¡SUCCESS! ✨ $(DEF_COLOR)"
 	
 all : $(NAME)
 
 fclean : clean
 	$(RM) $(NAME)
-	make fclean -C libft
 	@echo "$(CYAN) ✨ ¡CLEANED! ✨ $(DEF_COLOR)"
 
 clean :

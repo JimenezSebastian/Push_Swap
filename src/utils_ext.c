@@ -16,7 +16,7 @@ void	clean_exit(t_list **stack, int *index, char **argv)
 {
 	if (stack || index || argv)
 		free_v2(stack, index, argv);
-	ft_putstr_fd("Error", 1);
+	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }
 

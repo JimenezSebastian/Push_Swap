@@ -63,54 +63,57 @@ void	array_sort(int *nums, int size_array)
 	}
 }
 
-void sort_five_or_less(t_list **stack_a, t_list **stack_b, int argc)
+void	sort_five_or_less(t_list **stack_a, t_list **stack_b, int argc)
 {
-    int min_index;
-    int stack_size;
+	int	min_index;
+	int	stack_size;
 
-    while (argc > 3)
-    {
-        min_index = find_min_index(*stack_a);
-        stack_size = lst_size(*stack_a);
-        if (min_index <= stack_size / 2)
-            while (min_index-- > 0)
-                (ra_rb(stack_a), write(1, "ra\n", 4));
-        else
-            while (stack_size - min_index++ > 0)
-                (rra_rrb(stack_a), write(1, "rra\n", 5));
-        (pb(stack_a, stack_b), write(1, "pb\n", 4));
-        argc--;
-    }
-    sort_three(stack_a);
-    while (*stack_b)
-    {
-        pa(stack_a, stack_b);
-        write(1, "pa\n", 4);
-        if ((*stack_a)->index > (*stack_a)->next->index)
-            (ra_rb(stack_a), write(1, "ra\n", 4));
-    }
+	while (argc > 3)
+	{
+		min_index = find_min_index(*stack_a);
+		stack_size = lst_size(*stack_a);
+		if (min_index <= stack_size / 2)
+			while (min_index-- > 0)
+				(ra_rb(stack_a), write(1, "ra\n", 3));
+		else
+			while (stack_size - min_index++ > 0)
+				(rra_rrb(stack_a), write(1, "rra\n", 4));
+		(pb(stack_a, stack_b), write(1, "pb\n", 3));
+		argc--;
+	}
+	sort_three(stack_a);
+	while (*stack_b)
+	{
+		pa(stack_a, stack_b);
+		write(1, "pa\n", 3);
+		if ((*stack_a)->index > (*stack_a)->next->index)
+			(ra_rb(stack_a), write(1, "ra\n", 3));
+	}
 }
 
-void sort_three(t_list **stack_a)
+void	sort_three(t_list **stack_a)
 {
-    int first = (*stack_a)->index;
-    int second = (*stack_a)->next->index;
-    int third = (*stack_a)->next->next->index;
+	int	first;
+	int	second;
+	int	third;
 
-    if (first > second && second < third && first < third)
-        (sa_sb(stack_a), write(1, "sa\n", 4));
-    else if (first > second && second > third)
-    {
-        (sa_sb(stack_a), write(1, "sa\n", 4));
-        (rra_rrb(stack_a), write(1, "rra\n", 5));
-    }
-    else if (first > second && second < third && first > third)
-        (ra_rb(stack_a), write(1, "ra\n", 4));
-    else if (first < second && second > third && first < third)
-    {
-        (sa_sb(stack_a), write(1, "sa\n", 4));
-        (ra_rb(stack_a), write(1, "ra\n", 4));
-    }
-    else if (first < second && second > third && first > third)
-        (rra_rrb(stack_a), write(1, "rra\n", 5));
+	first = (*stack_a)->index;
+	second = (*stack_a)->next->index;
+	third = (*stack_a)->next->next->index;
+	if (first > second && second < third && first < third)
+		(sa_sb(stack_a), write(1, "sa\n", 3));
+	else if (first > second && second > third)
+	{
+		(sa_sb(stack_a), write(1, "sa\n", 3));
+		(rra_rrb(stack_a), write(1, "rra\n", 4));
+	}
+	else if (first > second && second < third && first > third)
+		(ra_rb(stack_a), write(1, "ra\n", 3));
+	else if (first < second && second > third && first < third)
+	{
+		(sa_sb(stack_a), write(1, "sa\n", 3));
+		(ra_rb(stack_a), write(1, "ra\n", 3));
+	}
+	else if (first < second && second > third && first > third)
+		(rra_rrb(stack_a), write(1, "rra\n", 4));
 }
