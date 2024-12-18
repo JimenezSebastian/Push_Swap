@@ -54,7 +54,6 @@ int	main(int argc, char **argv)
 	if (argc <= 5 && verify(stack_a))
 		sort_five_or_less(&stack_a, &stack_b, argc);
 	algorithm(&stack_a, &stack_b);
-	test(stack_a);
 	free_v2(&stack_a, NULL, NULL);
 	return (0);
 }
