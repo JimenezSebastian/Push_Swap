@@ -10,26 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
-void	test(t_list *stack_a)
-{
-	while (stack_a)
-	{
-		printf("Num:%i\n", stack_a->num);
-		stack_a = stack_a->next;
-	}
-}
-
-void	tester_indx(int *index, int argc)
-{
-	printf("Testindex\n");
-	while (argc-- >= 1)
-		printf("t%i", *(index++));
-	printf("\n");
-}
-
-int	parse(int argc, char **argv, t_list **stack_a)
+int	parse(int argc, char **argv, t_node **stack_a)
 {
 	int	*index;
 
@@ -43,8 +26,8 @@ int	parse(int argc, char **argv, t_list **stack_a)
 
 int	main(int argc, char **argv)
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
+	t_node	*stack_a;
+	t_node	*stack_b;
 
 	stack_a = NULL;
 	stack_b = NULL;

@@ -8,12 +8,8 @@ RM = rm -rf
 
 LIBFT = libft/libft.a
 
-SRCS = 	src/push_swap.c\
-		src/movements.c\
-		src/parse.c\
-		src/utils.c\
-		src/utils_ext.c\
-		src/algorithms.c\
+SRCS = 	src/push_swap.c src/movements.c src/parse.c\
+		src/utils.c src/utils_ext.c src/algorithms.c\
 
 OBJ =  $(SRCS:.c=.o)
 

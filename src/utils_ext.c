@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
-void	clean_exit(t_list **stack, int *index, char **argv)
+void	clean_exit(t_node **stack, int *index, char **argv)
 {
 	if (stack || index || argv)
 		free_v2(stack, index, argv);
@@ -20,10 +20,10 @@ void	clean_exit(t_list **stack, int *index, char **argv)
 	exit(1);
 }
 
-void	free_v2(t_list **stack, int *index, char **argv)
+void	free_v2(t_node **stack, int *index, char **argv)
 {
 	int		i;
-	t_list	*temp;
+	t_node	*temp;
 
 	i = 0;
 	while (stack && *stack)
@@ -57,7 +57,7 @@ void	overflow(char *str, int *index, char **argv)
 	}
 }
 
-int	verify(t_list *stack_a)
+int	verify(t_node *stack_a)
 {
 	int	save;
 
@@ -73,7 +73,7 @@ int	verify(t_list *stack_a)
 	return (0);
 }
 
-int	find_min_index(t_list *stack)
+int	find_min_index(t_node *stack)
 {
 	int	min_index;
 	int	min_value;

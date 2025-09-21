@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
-int	value_exists(t_list *stack_a, int n)
+int	value_exists(t_node *stack_a, int n)
 {
-	t_list	*temp;
+	t_node	*temp;
 
 	temp = stack_a;
 	while (temp)
@@ -26,11 +26,11 @@ int	value_exists(t_list *stack_a, int n)
 	return (0);
 }
 
-t_list	*lstnew(int content)
+t_node	*lstnew(int content)
 {
-	t_list	*new_node;
+	t_node	*new_node;
 
-	new_node = malloc(sizeof(t_list));
+	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		return (NULL);
 	new_node -> num = content;
@@ -38,9 +38,9 @@ t_list	*lstnew(int content)
 	return (new_node);
 }
 
-int	lstadd_back(t_list **list, t_list *newNode)
+int	lstadd_back(t_node **list, t_node *newNode)
 {
-	t_list	*ptr;
+	t_node	*ptr;
 
 	ptr = *list;
 	if (!newNode)
@@ -56,10 +56,10 @@ int	lstadd_back(t_list **list, t_list *newNode)
 	return (0);
 }
 
-int	lst_size(t_list *lst)
+int	lst_size(t_node *lst)
 {
 	int		size;
-	t_list	*ptr;	
+	t_node	*ptr;	
 
 	ptr = lst;
 	size = 0;
@@ -71,10 +71,10 @@ int	lst_size(t_list *lst)
 	return (size);
 }
 
-void	index_lst(t_list **stack_a, int *index)
+void	index_lst(t_node **stack_a, int *index)
 {
 	int		i;
-	t_list	*ptr;
+	t_node	*ptr;
 
 	ptr = *stack_a;
 	while (ptr)

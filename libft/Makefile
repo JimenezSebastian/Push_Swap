@@ -6,70 +6,54 @@
 #    By: almejia- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/13 22:08:57 by almejia-          #+#    #+#              #
-#    Updated: 2024/12/19 00:28:08 by almejia-         ###   ########.fr        #
+#    Updated: 2024/05/05 08:58:06 by almejia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+LIB = ar rcs
+RM = rm -f
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-RM = rm -rf
+CCFLAGS = -Wall -Wextra -Werror
 
-SRCDIR = src
-OBJDIR = obj
-INCDIR = includes
+SRC =  src/ft_atoi.c src/ft_bzero.c src/ft_calloc.c src/ft_isalnum.c \
+       src/ft_isalpha.c src/ft_isascii.c src/ft_isdigit.c src/ft_isprint.c \
+       src/ft_itoa.c src/ft_memchr.c src/ft_memcmp.c src/ft_memcpy.c \
+       src/ft_memmove.c src/ft_memset.c src/ft_putchar_fd.c src/ft_putendl_fd.c \
+       src/ft_putnbr_fd.c src/ft_putstr_fd.c src/ft_split.c src/ft_strcat.c \
+       src/ft_strchr.c src/ft_strdup.c src/ft_striteri.c src/ft_strjoin.c \
+       src/ft_strlcat.c src/ft_strlcpy.c src/ft_strlen.c src/ft_strmapi.c \
+       src/ft_strncmp.c src/ft_strnstr.c src/ft_strrchr.c src/ft_strtrim.c \
+       src/ft_substr.c src/ft_tolower.c src/ft_toupper.c
 
-CYAN = \033[0;96m
-RED = \033[0;91m
-DEF_COLOR = \033[0;49m
+BONUSsRC = src/ft_lstadd_back_bonus.c src/ft_lstadd_front_bonus.c \
+           src/ft_lstclear_bonus.c src/ft_lstdelone_bonus.c \
+           src/ft_lstiter_bonus.c src/ft_lstlast_bonus.c \
+           src/ft_lstmap_bonus.c src/ft_lstnew_bonus.c src/ft_lstsize_bonus.c
 
-SRCS = $(addprefix $(SRCDIR)/, ft_memset.c ft_bzero.c ft_strlen.c ft_atoi.c ft_isdigit.c \
-	ft_isalpha.c ft_isprint.c ft_isascii.c ft_isalnum.c ft_memchr.c ft_memcpy.c \
-	ft_memcmp.c ft_memmove.c ft_strchr.c ft_strdup.c ft_strlcat.c ft_strlcpy.c \
-	ft_strncmp.c ft_toupper.c ft_tolower.c ft_strnstr.c ft_strrchr.c ft_calloc.c \
-	ft_putchar_fd.c ft_putstr_fd.c ft_putnbr_fd.c ft_putendl_fd.c ft_substr.c \
-	ft_strjoin.c ft_strtrim.c ft_strmapi.c ft_itoa.c ft_split.c ft_striteri.c ft_strcat.c)
-OBJ = $(addprefix $(OBJDIR)/, $(SRCS:$(SRCDIR)/%.c=%.o))
-DEP = $(OBJ:.o=.d)
+OBJ = $(SRC:.c=.o)
+BONUSOBJ = $(BONUSSRC:.c=.o)
+
+INCLUDE = include/libft.h
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@echo "$(CYAN) ☕ COMPILANDO LIBRERÍA... ☕ $(DEF_COLOR)"
-	ar rcs $(NAME) $(OBJ)
-	@echo "$(CYAN) ✨ ¡LIBRERÍA CREADA CON ÉXITO! ✨ $(DEF_COLOR)"
+$(NAME): $(OBJ) $(INCLUDE)
+	$(LIB) $(NAME) $(OBJ)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@mkdir -p $(OBJDIR)
-	$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
+bonus: $(OBJ) $(BONUSOBJ) $(INCLUDE)
+	$(LIB) $(NAME) $(BONUSOBJ) $(OBJ)
+
+%.o: %.c
+	$(CC) $(CCFLAGS) -c -o $@ $<
+
 clean:
-	@echo "$(CYAN) 🍩 ¡ELIMINANDO ARCHIVOS OBJETOS! 🍩 $(DEF_COLOR)"
-	$(RM) $(OBJDIR)
+	$(RM) $(OBJ) $(BONUSOBJ)
 
 fclean: clean
-	@echo "$(CYAN) ✨ ¡ELIMINANDO TODO! ✨ $(DEF_COLOR)"
 	$(RM) $(NAME)
 
 re: fclean all
 
-# Regla para pruebas
-TEST_SRCS = tests/test_main.c
-TEST_NAME = tests.out
-test: $(NAME)
-	$(CC) $(CFLAGS) $(TEST_SRCS) -I$(INCDIR) -L. -lft -o $(TEST_NAME)
-	./$(TEST_NAME)
-
-# Regla para depuración
-debug: CFLAGS += -g
-debug: re
-
-# Dependencias automáticas
--include $(DEP)
-
-%.d: %.c
-	@mkdir -p $(OBJDIR)
-	@$(CC) $(CFLAGS) -MM $< -MF $@
-
-# Variables especiales
-.PHONY: all clean fclean re test debug
+rebonus: fclean bonus

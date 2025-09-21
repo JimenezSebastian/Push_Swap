@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 char	**cleaner_argv(char **argv, int argc)
 {
@@ -87,11 +87,11 @@ int	*make_index(char **argv, int argc)
 	return (index);
 }
 
-void	stack_generator(t_list **stack_a, int *index, int argc, char **argv)
+void	stack_generator(t_node **stack_a, int *index, int argc, char **argv)
 {
 	int		i;
 	int		cpy;
-	t_list	*new_node;
+	t_node	*new_node;
 
 	i = 0;
 	new_node = NULL;

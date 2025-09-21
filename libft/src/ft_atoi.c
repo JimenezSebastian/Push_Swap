@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: almejia- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 15:34:57 by almejia-          #+#    #+#             */
-/*   Updated: 2024/12/12 15:35:02 by almejia-         ###   ########.fr       */
+/*   Created: 2024/03/12 14:28:54 by almejia-          #+#    #+#             */
+/*   Updated: 2024/03/29 05:00:13 by almejia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 const char	*isspaces(const char *str)
 {
@@ -48,28 +48,30 @@ int	signos(const char *str)
 
 int	ft_atoi(const char *str)
 {
-	int			r;
-	int			sign;
-	long long	n;
+	int	result;
+	int	sign;
 
-	n = 0;
+	result = 0;
 	str = isspaces(str);
 	sign = signos(str);
 	while (*str == '+' || *str == '-')
 		++str;
 	while (*str >= '0' && *str <= '9')
-		n = n * 10 + (*(str++) - '0');
-	(void)sign;
-	if (n < INT_MIN || n > INT_MAX)
-		return (0);
-	n *= sign;
-	r = (int)n;
-	return (r);
+	{
+		result = result * 10 + (*str - '0');
+		++str;
+	}
+	result *= sign;
+	return (result);
 }
+
 /*
+#include<stdlib.h>
+#include<stdio.h>
 int main()
 {
-	printf("%i", ft_atoi("-2147483648"));
+	printf("%d", ft_atoi("    -123abc123"));
+	printf("%d", atoi("    -123abc123"));
 	return (0);
 }
 */

@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
-void	sa_sb(t_list **lst)
+void	sa_sb(t_node **lst)
 {
-	t_list	*first;
-	t_list	*second;
+	t_node	*first;
+	t_node	*second;
 
 	first = *lst;
 	second = first->next;
@@ -24,9 +24,9 @@ void	sa_sb(t_list **lst)
 	*lst = second;
 }
 
-void	pa(t_list **a, t_list **b)
+void	pa(t_node **a, t_node **b)
 {
-	t_list	*temp;
+	t_node	*temp;
 
 	temp = *b;
 	*b = (*b)->next;
@@ -34,9 +34,9 @@ void	pa(t_list **a, t_list **b)
 	*a = temp;
 }
 
-void	pb(t_list **a, t_list **b)
+void	pb(t_node **a, t_node **b)
 {
-	t_list	*temp;
+	t_node	*temp;
 
 	temp = *a;
 	*a = (*a)->next;
@@ -44,11 +44,11 @@ void	pb(t_list **a, t_list **b)
 	*b = temp;
 }
 
-void	ra_rb(t_list **lst)
+void	ra_rb(t_node **lst)
 {
-	t_list	*temp;
-	t_list	*last;
-	t_list	*temp2;
+	t_node	*temp;
+	t_node	*last;
+	t_node	*temp2;
 
 	temp = *lst;
 	temp2 = temp->next;
@@ -60,10 +60,10 @@ void	ra_rb(t_list **lst)
 	*lst = temp2;
 }
 
-void	rra_rrb(t_list **lst)
+void	rra_rrb(t_node **lst)
 {
-	t_list	*second_last;
-	t_list	*last;
+	t_node	*second_last;
+	t_node	*last;
 
 	second_last = *lst;
 	while (second_last->next->next)
@@ -74,6 +74,8 @@ void	rra_rrb(t_list **lst)
 	*lst = last;
 }
 
+
+// These moves are not required
 /*
 void rr(n_list **a, n_list **b)
 {
